@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.NetworkInformation;         
+using System.Net.NetworkInformation;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,7 @@ namespace _2FAHealthCheckGUI
         public Form()
         {
             InitializeComponent();
+            tbConnected.Visible = false;       
             tbDriver.Text = "scfilter,WUDFRd";
             tbPath.Text = getPath();
         }
@@ -112,6 +114,7 @@ namespace _2FAHealthCheckGUI
         public async void apply()
         {
             loadGif.Visible = true;
+            tbConnected.Text = "";
             bool connected = await Task.Run(() => connectivity(tbPC.Text));
             if (connected)
             {
@@ -133,6 +136,7 @@ namespace _2FAHealthCheckGUI
         /// <returns>false if any computer is not available</returns>
         public async Task<bool> connectivity(String computers)
         {
+            String notReached = "";
             bool connect = false;
             try
             {
@@ -145,8 +149,8 @@ namespace _2FAHealthCheckGUI
                             Ping ping = new Ping();
                             PingReply pingReply = ping.Send(Dns.GetHostAddresses(computer).GetValue(0).ToString());
                             if (pingReply.Status != IPStatus.Success)
-                            {   //use Invoke((MethodInvoker...  because you need to update another thread (gui thread)
-                                this.Invoke((MethodInvoker)delegate { lmessage.Text = "Failed to write report, because " + computer + " is not reachable. Check connection!"; });
+                            {  
+                                notReached.Insert(notReached.Length,computer+" ");  
                                 connect = false;
                             }
                             else
@@ -166,13 +170,18 @@ namespace _2FAHealthCheckGUI
 
                     catch (Exception)
                     {
+                      notReached=  notReached.Insert(notReached.Length, computer+"\r\n");
+                        //use Invoke((MethodInvoker...  because you need to update another thread (gui thread)
                         this.Invoke((MethodInvoker)delegate
-                        {
-                            lmessage.Text = "The computer " + computer + " isn´t reachable";
-                        });
+                        { 
+                            lmessage.Text = "No response from: ";
+                            tbConnected.Text = notReached ;
+                            tbConnected.Visible = true;
+                        });   
+                        Thread.Sleep(100);
                         connect = false;
                     }
-                }
+                }    
             }
             catch (Exception)
             {
@@ -180,6 +189,6 @@ namespace _2FAHealthCheckGUI
             }
             await Task.Delay(1);     
             return connect;
-        }
+        }    
     }
 }

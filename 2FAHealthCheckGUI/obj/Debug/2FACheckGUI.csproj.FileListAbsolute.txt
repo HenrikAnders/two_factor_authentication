@@ -25,7 +25,6 @@ D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\bin\Debug\en\2
 D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\bin\Debug\MetroFramework.Design.dll
 D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\bin\Debug\MetroFramework.dll
 D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\bin\Debug\MetroFramework.Fonts.dll
-D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\obj\Debug\2FACheckGUI.csprojResolveAssemblyReference.cache
 D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\obj\Debug\_2FAHealthCheckGUI.Form.resources
 D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\obj\Debug\_2FAHealthCheckGUI.Properties.Resources.resources
 D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\obj\Debug\_2FAHealthCheckGUI.Form.en.resources
@@ -33,3 +32,4 @@ D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\obj\Debug\2FAC
 D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\obj\Debug\en\2FAHealthCheckGUI.resources.dll
 D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\obj\Debug\2FAHealthCheckGUI.exe
 D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\obj\Debug\2FAHealthCheckGUI.pdb
+D:\Visual Studio\Repo\two_factor_authentication\2FAHealthCheckGUI\obj\Debug\2FACheckGUI.csprojResolveAssemblyReference.cache

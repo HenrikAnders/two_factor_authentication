@@ -276,9 +276,6 @@
   <data name="&gt;&gt;tbDriver.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <metadata name="ttButton.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="bApply.Image" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -297,6 +294,9 @@
   <data name="bApply.Text" xml:space="preserve">
     <value>Create report</value>
   </data>
+  <metadata name="ttButton.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>189, 17</value>
+  </metadata>
   <data name="bApply.ToolTip" xml:space="preserve">
     <value>Validate input and generate report</value>
   </data>
@@ -384,33 +384,6 @@
   <data name="&gt;&gt;tbPath.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="lInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>384, 149</value>
-  </data>
-  <data name="lInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 198</value>
-  </data>
-  <data name="lInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="lInfo.Text" xml:space="preserve">
-    <value>By clicking "Create report " a Excel report will be generated at the given Path.</value>
-  </data>
-  <data name="&gt;&gt;lInfo.Name" xml:space="preserve">
-    <value>lInfo</value>
-  </data>
-  <data name="&gt;&gt;lInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lInfo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lInfo.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="lPC.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -436,7 +409,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lPC.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="lDriver.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -463,7 +436,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lDriver.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="lmessage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -472,7 +445,7 @@
     <value>NoControl</value>
   </data>
   <data name="lmessage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 394</value>
+    <value>394, 110</value>
   </data>
   <data name="lmessage.Size" type="System.Drawing.Size, System.Drawing">
     <value>0, 17</value>
@@ -490,63 +463,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lmessage.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="ttButton.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="loadGif.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        TRWo6B5XPREAOw==
-</value>
+    <value>1</value>
   </data>
   <data name="loadGif.ImageLocation" xml:space="preserve">
     <value>D:\Visual Studio\2FA_HealthClientHealthChecker\2FAHealthCheckGUI\Resources\load.gif</value>
@@ -1028,7 +945,7 @@
 </value>
   </data>
   <data name="loadGif.Location" type="System.Drawing.Point, System.Drawing">
-    <value>450, 265</value>
+    <value>235, 22</value>
   </data>
   <data name="loadGif.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 33</value>
@@ -1049,7 +966,34 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;loadGif.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="tbConnected.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tbConnected.Location" type="System.Drawing.Point, System.Drawing">
+    <value>397, 149</value>
+  </data>
+  <data name="tbConnected.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tbConnected.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 238</value>
+  </data>
+  <data name="tbConnected.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;tbConnected.Name" xml:space="preserve">
+    <value>tbConnected</value>
+  </data>
+  <data name="&gt;&gt;tbConnected.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbConnected.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tbConnected.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1062,9 +1006,6 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>578, 458</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>578, 458</value>

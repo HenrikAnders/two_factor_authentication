@@ -1,10 +1,11 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace _2FAHealthCheckGUI
 {
     partial class Form
     {
-        ToolTip ttButton;
+        ToolTip ttButton;             
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -40,12 +41,12 @@ namespace _2FAHealthCheckGUI
             this.bApply = new MetroFramework.Controls.MetroTextBox.MetroTextButton();
             this.lExport = new MetroFramework.Drawing.Html.HtmlLabel();
             this.tbPath = new MetroFramework.Controls.MetroTextBox();
-            this.lInfo = new System.Windows.Forms.Label();
             this.lPC = new System.Windows.Forms.Label();
             this.lDriver = new System.Windows.Forms.Label();
             this.lmessage = new System.Windows.Forms.Label();
             this.ttButton = new System.Windows.Forms.ToolTip(this.components);
             this.loadGif = new System.Windows.Forms.PictureBox();
+            this.tbConnected = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.loadGif)).BeginInit();
             this.SuspendLayout();
             // 
@@ -214,12 +215,6 @@ namespace _2FAHealthCheckGUI
             this.tbPath.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.tbPath.TextChanged += new System.EventHandler(this.tbPath_TextChanged);
             // 
-            // lInfo
-            // 
-            this.lInfo.ForeColor = System.Drawing.Color.Black;
-            resources.ApplyResources(this.lInfo, "lInfo");
-            this.lInfo.Name = "lInfo";
-            // 
             // lPC
             // 
             this.lPC.ForeColor = System.Drawing.Color.Black;
@@ -251,15 +246,22 @@ namespace _2FAHealthCheckGUI
             this.loadGif.Name = "loadGif";
             this.loadGif.TabStop = false;
             // 
+            // tbConnected
+            // 
+            this.tbConnected.BackColor = System.Drawing.SystemColors.Window;
+            this.tbConnected.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.tbConnected, "tbConnected");
+            this.tbConnected.Name = "tbConnected";
+            // 
             // Form
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tbConnected);
             this.Controls.Add(this.lmessage);
             this.Controls.Add(this.lDriver);
             this.Controls.Add(this.lPC);
             this.Controls.Add(this.loadGif);
-            this.Controls.Add(this.lInfo);
             this.Controls.Add(this.tbPath);
             this.Controls.Add(this.lExport);
             this.Controls.Add(this.bApply);
@@ -285,11 +287,11 @@ namespace _2FAHealthCheckGUI
         private MetroFramework.Controls.MetroTextBox.MetroTextButton bApply;
         private MetroFramework.Drawing.Html.HtmlLabel lExport;
         private MetroFramework.Controls.MetroTextBox tbPath;
-        private Label lInfo;
         private PictureBox loadGif;
         private Label lPC;
         private Label lDriver;
         private Label lmessage;
+        private TextBox tbConnected;
     }
 }
 
