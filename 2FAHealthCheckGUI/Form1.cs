@@ -1,4 +1,5 @@
-﻿using MetroFramework.Forms;
+﻿using MetroFramework;
+using MetroFramework.Forms;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -39,26 +40,26 @@ namespace _2FAHealthCheckGUI
         {
             //if (String.IsNullOrEmpty(tbPath.Text))
             //{
-            //    lExport.ForeColor = System.Drawing.Color.Black;
+            //    lExport.ForeColor = System.Drawing.Color.Black;                                                                 
             //}  
-            this.bApply.Enabled = this.ValidateEnableBtn();
+            this.bApply.Enabled = this.ValidatebApplyBtn();
         }
 
         private void tbPC_TextChanged(object sender, EventArgs e)
         {
-            this.bApply.Enabled = this.ValidateEnableBtn();
+            this.bApply.Enabled = this.ValidatebApplyBtn();
         }
 
         private void tbDriver_TextChanged(object sender, EventArgs e)
         {
-            this.bApply.Enabled = this.ValidateEnableBtn();
+            this.bApply.Enabled = this.ValidatebApplyBtn();
         }
 
         /// <summary>
         /// check textboxes, if null or empty. Also the directory of the path
         /// </summary>
         /// <returns></returns>
-        private bool ValidateEnableBtn()
+        private bool ValidatebApplyBtn()
         {
             bool bPath = !string.IsNullOrEmpty(this.tbPath.Text) && Directory.Exists(this.tbPath.Text) && !Directory.GetAccessControl(this.tbPath.Text).AreAccessRulesProtected;
             bool bBoxPC = !String.IsNullOrEmpty(tbPC.Text);
@@ -162,7 +163,7 @@ namespace _2FAHealthCheckGUI
                         {
                             this.Invoke((MethodInvoker)delegate
                             {
-                                lmessage.Text = "Your maschine is offline, please connect!";
+                                MetroMessageBox.Show(this, "Your maschine is offline\r\n Please connect!"); 
                             });
                             connect = false;
                         }

@@ -1,8 +1,9 @@
-﻿using Microsoft.Win32;
+﻿using MetroFramework;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Management;       
+using System.Management;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,7 +23,8 @@ namespace _2FAHealthCheckGUI
         String machineName;                           
         String operatingSystem;
         String osVersion;
-        bool error=false;            
+        Boolean error=false;
+        String status = "";     
 
         String filePath = "";
         List<String> remoteComputerList=null;
@@ -221,7 +223,8 @@ namespace _2FAHealthCheckGUI
                         goto loop1;       //used to break out and get the new driverName from the upper loop
                     }
                 }
-                MessageBox.Show("The driver " + driverName + " was not found, check spelling");
+                MetroMessageBox.Show(Form.ActiveForm,"The driver " + driverName + " was not found, check spelling");
+                status = "without" + driverName;
             loop1:;
             }    
             return resultArray;
@@ -266,32 +269,38 @@ namespace _2FAHealthCheckGUI
         {
             String[,] resultArray = new String[1,4];
             List<String> resultList = new List<string>();
-            List<String> servicesResult = new List<String>(); 
+            List<String> services = new List<String>();
+            services.Add("SCardSvr");
+            services.Add("SCPolicySvc");
             ObjectQuery query = new ObjectQuery(
                 "SELECT * FROM Win32_Service");
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(getScope(), query);
             int d2 = 0;
             foreach (ManagementObject service in searcher.Get())     //iterate throught management obj. collection
             {
-                if (service["Name"].Equals("SCardSvr") || service["Name"].Equals("SCPolicySvc"))      //service to be capured
-                {
-                    if (d2 == 0)
+                foreach (String definedService  in services)
+                {                           // if (service["Name"].Equals(definedService) || service["Name"].Equals("SCPolicySvc"))
+                    if (service["Name"].Equals(definedService))      //service to be capured
                     {
-                        resultArray[d2, 0] = service["Name"].ToString();
-                        resultArray[d2, 1] = service["State"].ToString();
-                        resultArray[d2, 2] = service["Status"].ToString();
-                        resultArray[d2, 3] = service["StartMode"].ToString();
+                        if (d2 == 0)
+                        {
+                            resultArray[d2, 0] = service["Name"].ToString();
+                            resultArray[d2, 1] = service["State"].ToString();
+                            resultArray[d2, 2] = service["Status"].ToString();
+                            resultArray[d2, 3] = service["StartMode"].ToString();
+                        }
+                        if (d2 > 0)
+                        {
+                            //apend the new service string to the old, with a seperator 
+                            resultArray[0, 0] = resultArray[d2 - 1, 0] + "\n_______\n" + service["Name"];
+                            resultArray[0, 1] = resultArray[d2 - 1, 1] + "\n_______\n" + service["State"];
+                            resultArray[0, 2] = resultArray[d2 - 1, 2] + "\n_______\n" + service["Status"];
+                            resultArray[0, 3] = resultArray[d2 - 1, 3] + "\n_______\n" + service["StartMode"];
+                        }
+                        d2++;
                     }
-                    if (d2 > 0)
-                    {
-                        //apend the new service string to the old, with a seperator 
-                        resultArray[0, 0] = resultArray[d2 - 1, 0] + "\n_______\n" + service["Name"];
-                        resultArray[0, 1] = resultArray[d2 - 1, 1] + "\n_______\n" + service["State"];
-                        resultArray[0, 2] = resultArray[d2 - 1, 2] + "\n_______\n" + service["Status"];
-                        resultArray[0, 3] = resultArray[d2 - 1, 3] + "\n_______\n" + service["StartMode"];          
-                    }
-                    d2++;
-                } 
+                }
+              
             }
             return resultArray;
         }
@@ -375,15 +384,17 @@ namespace _2FAHealthCheckGUI
         private void remoteHandling(Exception e)
         {
             if (e.ToString().StartsWith("System.Security.SecurityException: Requested registry access is not allowed.")||e.ToString().StartsWith("System.UnauthorizedAccessException: Zugriff verweigert"))
-            {  
-                MessageBox.Show("! access to computer " + remoteComputer + " is not allowed ! \n for more information -> desktop/_2FA_LOG.txt");
+            {
+                MetroMessageBox.Show(Form.ActiveForm, "! access to computer " + remoteComputer + " is not allowed ! \n for more information -> desktop/_2FA_LOG.txt");
+                //MessageBox.Show("! access to computer " + remoteComputer + " is not allowed ! \n for more information -> desktop/_2FA_LOG.txt");
                 // Environment.Exit(-1);     kill complete program
                 // Thread.CurrentThread.Abort();  throw exception, because other Threads are waiting for the current
             }
             else
             {
-                MessageBox.Show("An exception occured, for more information -> desktop/_2FA_LOG.txt");            
-            }
+                MetroMessageBox.Show(Form.ActiveForm, "An exception occured, for more information -> desktop/_2FA_LOG.txt");
+               //MessageBox.Show("An exception occured, for more information -> desktop/_2FA_LOG.txt");            
+            }                                                                                              
             this.logFile = new System.IO.StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\\_" + timeStamp + "_2FA_LOG.txt");        
             logFile.Write(e);
             this.logFile.Close();
@@ -394,7 +405,7 @@ namespace _2FAHealthCheckGUI
         /// run the report
         /// </summary>
         /// <returns>current thread</returns>
-        public  async Task reportAsync() {                
+        public  async Task reportAsync() {  
             excelWriter.writeHeader("A1", firstHeader());
             excelWriter.writeHeader("A2", secondHeader());
             int row = 3;
@@ -427,7 +438,7 @@ namespace _2FAHealthCheckGUI
             excelWriter.bigLeftGridLine("J2", excelWriter.getCellName(remoteComputerList.Count + 2, 11));//Service section
             excelWriter.bigLeftGridLine("N2", excelWriter.getCellName(remoteComputerList.Count + 2, 15));//Driver section
             excelWriter.bigLeftGridLine("R2", excelWriter.getCellName(remoteComputerList.Count + 2, 19));//Certificate section   
-            //Color gray line, if Userprofiles incomplete             Middle ware AET
+            //Color gray line, if Userprofiles incomplete             Middleware AET
             for (int i = 3; i < remoteComputerList.Count + 3; i++)
             {
                 String sAETInstalled = excelWriter.readExcelWorkbook(1, i, 7);
@@ -441,13 +452,17 @@ namespace _2FAHealthCheckGUI
             excelWriter.Close(filePath + "\\" + timeStamp + " 2FA_HealthReport.xlsx");
             if (error == true)
             {
-                if (MessageBox.Show("Report created with error!", "", MessageBoxButtons.OK) == DialogResult.OK)
+                if (MetroMessageBox.Show(Form.ActiveForm, "Report created with error!", "", MessageBoxButtons.OK) == DialogResult.OK)
                 {
                 }    
             }
             else
             {
-                if (MessageBox.Show("Report created successfully", "", MessageBoxButtons.OK) == DialogResult.OK)
+                if (String.IsNullOrEmpty(status))
+                {
+                    status = "succsessfully";
+                }
+                if (MetroMessageBox.Show(Form.ActiveForm,"Report created "+status, "", MessageBoxButtons.OK) == DialogResult.OK)
                 {  
                 }            
             }       
